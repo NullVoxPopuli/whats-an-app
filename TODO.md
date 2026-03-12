@@ -1,0 +1,7 @@
+- smol-est app
+  - start from the HTML 
+- embedding apps
+  - as components
+  - full apps
+  - nested routing
+  - enter the shadow ~realm~ dom
