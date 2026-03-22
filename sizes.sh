@@ -8,4 +8,6 @@ dust \
   --apparent-size \
   --invert-filter "yaml$" \
   --invert-filter "md$" \
+  --invert-filter "node_modules" \
+  --invert-filter "dist" \
   --invert-filter sizes.sh 
