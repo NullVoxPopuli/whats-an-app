@@ -1,4 +1,13 @@
+# Normal things
+.env
 node_modules/
 dist/
 dist-*/
 declarations/
+
+# React things
+build/
+.react-router/
+
+# macOS things
+.DS_Store
