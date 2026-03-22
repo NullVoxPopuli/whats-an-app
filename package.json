@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "root",
+  "devDependencies": {
+    "prettier": "^3.8.1",
+    "prettier-plugin-ember-template-tag": "^2.1.3"
+  }
+}

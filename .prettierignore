@@ -1,0 +1,6 @@
+# Annoying
+*.md
+*.yaml
+
+# Prettier is wrong (void elements do not end with />)
+*.html

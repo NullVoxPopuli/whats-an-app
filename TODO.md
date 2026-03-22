@@ -1,5 +1,8 @@
 - smol-est app
-  - start from the HTML 
+  - 1. HTML 
+  - 2. add babel
+  - 3. vite config
+  - 4. done
 - embedding apps
   - as components
   - full apps
