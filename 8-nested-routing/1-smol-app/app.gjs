@@ -4,44 +4,44 @@ import Component from "@glimmer/component";
 import { service } from "@ember/service";
 import { LinkTo } from "@ember/routing";
 
-class Router extends EmberRouter {
-  location = "history";
-  rootURL = "/";
-}
+export function bootApp(element, { root = "/" }) {
+  class Router extends EmberRouter {
+    location = "history";
+    rootURL = root;
+  }
 
-Router.map(function () {
-  this.route("foo");
-  this.route("bar");
-});
+  Router.map(function () {
+    this.route("foo");
+    this.route("bar");
+  });
 
-class App extends EmberApp {
-  modules = {
-    "./router": Router,
-    "./templates/application": class extends Component {
-      @service router;
-      <template>
-        <fieldset>
-          <legend>{{this.router.currentURL}}</legend>
+  class App extends EmberApp {
+    modules = {
+      "./router": Router,
+      "./templates/application": class extends Component {
+        @service router;
+        <template>
+          <fieldset>
+            <legend>{{this.router.currentURL}}</legend>
 
-          <nav>
-            <LinkTo @route="index">home</LinkTo>
-            <LinkTo @route="foo">foo</LinkTo>
-            <LinkTo @route="bar">bar</LinkTo>
-          </nav>
-          <main>
-            {{outlet}}
-          </main>
-        </fieldset>
-      </template>
-    },
-    "./templates/index": <template>home</template>,
-    "./templates/foo": <template>foo</template>,
-    "./templates/bar": <template>bar</template>,
-  };
-}
+            <nav>
+              <LinkTo @route="index">home</LinkTo>
+              <LinkTo @route="foo">foo</LinkTo>
+              <LinkTo @route="bar">bar</LinkTo>
+            </nav>
+            <main>
+              {{outlet}}
+            </main>
+          </fieldset>
+        </template>
+      },
+      "./templates/index": <template>home</template>,
+      "./templates/foo": <template>foo</template>,
+      "./templates/bar": <template>bar</template>,
+    };
+  }
 
-export function bootApp(element) {
-  App.create({
+  return App.create({
     rootElement: element,
   });
 }
