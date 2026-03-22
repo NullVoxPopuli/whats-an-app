@@ -14,4 +14,3 @@
   - as components
   - full apps
   - nested routing
-  - enter the shadow ~realm~ dom
