@@ -4,6 +4,7 @@ import {
   Link,
   Meta,
   Outlet,
+  Scripts,
   useLocation,
 } from "react-router";
 
@@ -48,6 +49,7 @@ export function Layout({ children }) {
         {children}
 
       </fieldset>
+      <Scripts />
       </body>
     </html>
   );

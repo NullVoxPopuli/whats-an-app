@@ -6,5 +6,4 @@ export default defineConfig({
     // react
     reactRouter(),
   ],
-  ssr: false,
 });
