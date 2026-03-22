@@ -1,7 +1,7 @@
 import { bootApp } from "smol-app-to-be-nested";
-import { useLocation } from "react-router";
 import { destroy } from "@ember/destroyable";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { useLocation } from '@tanstack/react-router';                                 
 
 export function EmbeddedApp() {
   let ref = useRef(null);
@@ -9,9 +9,9 @@ export function EmbeddedApp() {
 
   useEffect(() => {
     if (!ref.current) return;
-    console.log(location);
-    let app = bootApp(elementRef, {
-      root: location,
+    console.log(location.pathname);
+    let app = bootApp(ref.current, {
+      root: location.pathname,
     });
 
     return () => destroy(app);

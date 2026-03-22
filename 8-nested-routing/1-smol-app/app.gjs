@@ -22,7 +22,7 @@ export function bootApp(element, { root = "/" }) {
         @service router;
         <template>
           <fieldset>
-            <legend>{{this.router.currentURL}}</legend>
+            <legend>ember: {{this.router.currentURL}}</legend>
 
             <nav>
               <LinkTo @route="index">home</LinkTo>
