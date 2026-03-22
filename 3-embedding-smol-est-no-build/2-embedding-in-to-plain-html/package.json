@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "smolest-as-library-no-build": "workspace:*",
     "@babel/core": "^7.29.0",
     "@babel/runtime": "^7.29.2",
     "@embroider/core": "^4.4.6",
@@ -18,7 +19,6 @@
     "babel-plugin-ember-template-compilation": "^4.0.0",
     "decorator-transforms": "^2.3.1",
     "ember-source": "^6.11.0",
-    "smolest-as-library-no-build": "workspace:*",
     "vite": "^8.0.1"
   }
 }
