@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ReactFooRouteImport } from './routes/react-foo'
 import { Route as ReactBarRouteImport } from './routes/react-bar'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ReactFooSplatRouteImport } from './routes/react-foo/$'
+import { Route as ReactBarSplatRouteImport } from './routes/react-bar/$'
 
 const ReactFooRoute = ReactFooRouteImport.update({
   id: '/react-foo',
@@ -28,35 +30,57 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReactFooSplatRoute = ReactFooSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => ReactFooRoute,
+} as any)
+const ReactBarSplatRoute = ReactBarSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => ReactBarRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/react-bar': typeof ReactBarRoute
-  '/react-foo': typeof ReactFooRoute
+  '/react-bar': typeof ReactBarRouteWithChildren
+  '/react-foo': typeof ReactFooRouteWithChildren
+  '/react-bar/$': typeof ReactBarSplatRoute
+  '/react-foo/$': typeof ReactFooSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/react-bar': typeof ReactBarRoute
-  '/react-foo': typeof ReactFooRoute
+  '/react-bar': typeof ReactBarRouteWithChildren
+  '/react-foo': typeof ReactFooRouteWithChildren
+  '/react-bar/$': typeof ReactBarSplatRoute
+  '/react-foo/$': typeof ReactFooSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/react-bar': typeof ReactBarRoute
-  '/react-foo': typeof ReactFooRoute
+  '/react-bar': typeof ReactBarRouteWithChildren
+  '/react-foo': typeof ReactFooRouteWithChildren
+  '/react-bar/$': typeof ReactBarSplatRoute
+  '/react-foo/$': typeof ReactFooSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/react-bar' | '/react-foo'
+  fullPaths: '/' | '/react-bar' | '/react-foo' | '/react-bar/$' | '/react-foo/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/react-bar' | '/react-foo'
-  id: '__root__' | '/' | '/react-bar' | '/react-foo'
+  to: '/' | '/react-bar' | '/react-foo' | '/react-bar/$' | '/react-foo/$'
+  id:
+    | '__root__'
+    | '/'
+    | '/react-bar'
+    | '/react-foo'
+    | '/react-bar/$'
+    | '/react-foo/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ReactBarRoute: typeof ReactBarRoute
-  ReactFooRoute: typeof ReactFooRoute
+  ReactBarRoute: typeof ReactBarRouteWithChildren
+  ReactFooRoute: typeof ReactFooRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -82,13 +106,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/react-foo/$': {
+      id: '/react-foo/$'
+      path: '/$'
+      fullPath: '/react-foo/$'
+      preLoaderRoute: typeof ReactFooSplatRouteImport
+      parentRoute: typeof ReactFooRoute
+    }
+    '/react-bar/$': {
+      id: '/react-bar/$'
+      path: '/$'
+      fullPath: '/react-bar/$'
+      preLoaderRoute: typeof ReactBarSplatRouteImport
+      parentRoute: typeof ReactBarRoute
+    }
   }
 }
 
+interface ReactBarRouteChildren {
+  ReactBarSplatRoute: typeof ReactBarSplatRoute
+}
+
+const ReactBarRouteChildren: ReactBarRouteChildren = {
+  ReactBarSplatRoute: ReactBarSplatRoute,
+}
+
+const ReactBarRouteWithChildren = ReactBarRoute._addFileChildren(
+  ReactBarRouteChildren,
+)
+
+interface ReactFooRouteChildren {
+  ReactFooSplatRoute: typeof ReactFooSplatRoute
+}
+
+const ReactFooRouteChildren: ReactFooRouteChildren = {
+  ReactFooSplatRoute: ReactFooSplatRoute,
+}
+
+const ReactFooRouteWithChildren = ReactFooRoute._addFileChildren(
+  ReactFooRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ReactBarRoute: ReactBarRoute,
-  ReactFooRoute: ReactFooRoute,
+  ReactBarRoute: ReactBarRouteWithChildren,
+  ReactFooRoute: ReactFooRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

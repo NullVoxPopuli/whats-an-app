@@ -11,8 +11,8 @@ export function bootApp(element, { root = "/" }) {
   }
 
   Router.map(function () {
-    this.route("foo");
-    this.route("bar");
+    this.route("ember-foo");
+    this.route("ember-bar");
   });
 
   class App extends EmberApp {
@@ -20,14 +20,19 @@ export function bootApp(element, { root = "/" }) {
       "./router": Router,
       "./templates/application": class extends Component {
         @service router;
+
+        get url() {
+          return this.router.rootURL + this.router.currentURL;
+        }
+
         <template>
           <fieldset>
-            <legend>ember: {{this.router.currentURL}}</legend>
+            <legend>ember: {{this.url}}</legend>
 
             <nav>
               <LinkTo @route="index">home</LinkTo>
-              <LinkTo @route="foo">foo</LinkTo>
-              <LinkTo @route="bar">bar</LinkTo>
+              <LinkTo @route="ember-foo">foo</LinkTo>
+              <LinkTo @route="ember-bar">bar</LinkTo>
             </nav>
             <main>
               {{outlet}}
@@ -36,8 +41,8 @@ export function bootApp(element, { root = "/" }) {
         </template>
       },
       "./templates/index": <template>home</template>,
-      "./templates/foo": <template>foo</template>,
-      "./templates/bar": <template>bar</template>,
+      "./templates/ember-foo": <template>foo</template>,
+      "./templates/ember-bar": <template>bar</template>,
     };
   }
 

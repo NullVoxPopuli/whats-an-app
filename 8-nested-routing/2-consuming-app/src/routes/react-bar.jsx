@@ -1,13 +1,12 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { EmbeddedApp } from '../destroyable-wrapper.jsx';
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/react-bar')({
   component: Bar,
 })
 
 function Bar() {
-  return <>bar in react
-
-  <EmbeddedApp />
-    </>
+  return <div>
+    bar in react
+    <Outlet />
+  </div>
 }
