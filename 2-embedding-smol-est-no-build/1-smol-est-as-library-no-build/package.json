@@ -7,7 +7,7 @@
     "start": "vite"
   },
   "exports": {
-    ".": "./dist/smolest-as-library.js"
+    ".": "./app.gjs"
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",

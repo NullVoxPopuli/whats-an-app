@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { bootApp } from "smolest-as-library";
+import { bootApp } from "smolest-as-library-no-build";
 
 document.querySelector("#app").innerHTML = `
   A normal HTML page
