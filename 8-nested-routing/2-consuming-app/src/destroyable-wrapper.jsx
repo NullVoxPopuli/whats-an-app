@@ -9,7 +9,6 @@ export function EmbeddedApp() {
 
   useEffect(() => {
     if (!ref.current) return;
-    console.log(location.pathname);
     let app = bootApp(ref.current, {
       root: location.pathname,
     });
