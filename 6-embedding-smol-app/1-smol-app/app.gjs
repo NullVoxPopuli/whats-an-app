@@ -40,6 +40,8 @@ class App extends EmberApp {
   };
 }
 
-App.create({
-  rootElement: document.body,
-});
+export function bootApp(element) {
+  App.create({
+    rootElement: element,
+  });
+}

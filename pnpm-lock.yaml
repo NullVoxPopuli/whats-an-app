@@ -125,6 +125,9 @@ importers:
       '@babel/core':
         specifier: ^7.29.0
         version: 7.29.0
+      '@babel/plugin-transform-runtime':
+        specifier: ^7.29.0
+        version: 7.29.0(@babel/core@7.29.0)
       '@babel/runtime':
         specifier: ^7.29.2
         version: 7.29.2
@@ -236,6 +239,96 @@ importers:
       smolest-as-custom-element:
         specifier: workspace:*
         version: link:../1-smol-est-as-custom-element
+      vite:
+        specifier: ^8.0.1
+        version: 8.0.1(terser@5.46.1)
+
+  6-embedding-smol-app/1-smol-app:
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.27.1
+        version: 7.29.0
+      '@babel/plugin-transform-runtime':
+        specifier: ^7.27.1
+        version: 7.29.0(@babel/core@7.29.0)
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.29.2
+      '@embroider/core':
+        specifier: ^4.1.0
+        version: 4.4.6
+      '@embroider/macros':
+        specifier: ^1.18.0
+        version: 1.20.1(@babel/core@7.29.0)
+      '@embroider/vite':
+        specifier: ^1.1.5
+        version: 1.7.0(@embroider/core@4.4.6)(vite@8.0.1(terser@5.46.1))
+      '@glimmer/component':
+        specifier: ^2.0.0
+        version: 2.0.0
+      '@rollup/plugin-babel':
+        specifier: ^7.0.0
+        version: 7.0.0(@babel/core@7.29.0)(rollup@4.60.0)
+      babel-plugin-ember-template-compilation:
+        specifier: ^4.0.0
+        version: 4.0.0
+      concurrently:
+        specifier: ^9.1.2
+        version: 9.2.1
+      decorator-transforms:
+        specifier: ^2.3.0
+        version: 2.3.1(@babel/core@7.29.0)
+      ember-source:
+        specifier: 6.11.0
+        version: 6.11.0(@glimmer/component@2.0.0)(rsvp@4.8.5)
+      ember-strict-application-resolver:
+        specifier: ^0.1.1
+        version: 0.1.1(@babel/core@7.29.0)
+      prettier:
+        specifier: ^3.5.3
+        version: 3.8.1
+      prettier-plugin-ember-template-tag:
+        specifier: ^2.0.5
+        version: 2.1.3(prettier@3.8.1)
+      vite:
+        specifier: ^8.0.1
+        version: 8.0.1(terser@5.46.1)
+
+  6-embedding-smol-app/2-embedding-app-in-to-plain-html:
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.29.0
+        version: 7.29.0
+      '@babel/plugin-transform-runtime':
+        specifier: ^7.29.0
+        version: 7.29.0(@babel/core@7.29.0)
+      '@babel/runtime':
+        specifier: ^7.29.2
+        version: 7.29.2
+      '@embroider/core':
+        specifier: ^4.4.6
+        version: 4.4.6
+      '@embroider/macros':
+        specifier: ^1.20.1
+        version: 1.20.1(@babel/core@7.29.0)
+      '@embroider/vite':
+        specifier: ^1.7.0
+        version: 1.7.0(@embroider/core@4.4.6)(vite@8.0.1(terser@5.46.1))
+      '@rollup/plugin-babel':
+        specifier: ^7.0.0
+        version: 7.0.0(@babel/core@7.29.0)(rollup@4.60.0)
+      babel-plugin-ember-template-compilation:
+        specifier: ^4.0.0
+        version: 4.0.0
+      decorator-transforms:
+        specifier: ^2.3.1
+        version: 2.3.1(@babel/core@7.29.0)
+      ember-source:
+        specifier: ^6.11.0
+        version: 6.11.0(@glimmer/component@2.0.0)(rsvp@4.8.5)
+      smol-app-embedded:
+        specifier: workspace:*
+        version: link:../1-smol-app
       vite:
         specifier: ^8.0.1
         version: 8.0.1(terser@5.46.1)
@@ -1644,6 +1737,9 @@ packages:
     engines: {node: '>= 20.19'}
     peerDependencies:
       '@glimmer/component': '>= 1.1.2'
+
+  ember-strict-application-resolver@0.1.1:
+    resolution: {integrity: sha512-/49JZ2Yk2ggicAGIoFNWcz05llhe2i+/2dpH5Pv1KlwZOBKkqMMJpTKEB4IMg+FjKBiE0r2yxuZzo9Oly9vc1A==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -4565,6 +4661,14 @@ snapshots:
       simple-html-tokenizer: 0.5.11
     transitivePeerDependencies:
       - rsvp
+      - supports-color
+
+  ember-strict-application-resolver@0.1.1(@babel/core@7.29.0):
+    dependencies:
+      '@embroider/addon-shim': 1.10.2
+      decorator-transforms: 2.3.1(@babel/core@7.29.0)
+    transitivePeerDependencies:
+      - '@babel/core'
       - supports-color
 
   emoji-regex@8.0.0: {}

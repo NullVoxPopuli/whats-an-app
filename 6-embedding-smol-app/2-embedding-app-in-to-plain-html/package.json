@@ -1,5 +1,5 @@
 {
-  "name": "embedding-in-to-plain-html-no-build",
+  "name": "embedding-app-in-to-plain-html",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -19,7 +19,7 @@
     "babel-plugin-ember-template-compilation": "^4.0.0",
     "decorator-transforms": "^2.3.1",
     "ember-source": "^6.11.0",
-    "smolest-as-library-no-build": "workspace:*",
+    "smol-app-embedded": "workspace:*",
     "vite": "^8.0.1"
   }
 }
