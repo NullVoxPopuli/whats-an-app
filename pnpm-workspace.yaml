@@ -1,2 +1,4 @@
 packages:
   - "./*/*"
+patchedDependencies:
+  ember-source: patches/ember-source.patch
