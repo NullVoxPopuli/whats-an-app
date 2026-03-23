@@ -1,6 +1,7 @@
 import EmberRouter from "@ember/routing/router";
 import EmberApp from "ember-strict-application-resolver";
 import Component from "@glimmer/component";
+import Route from "@ember/routing/route";
 import { destroy } from "@ember/destroyable";
 import { service } from "@ember/service";
 import { LinkTo } from "@ember/routing";
@@ -34,9 +35,19 @@ Router.map(function () {
   this.route("nested", { path: "*fullPath" });
 });
 
+class DualRouterFix extends Route {
+  @service router;
+  beforeModel(transition) {
+    this.router.transitionTo(transition.to.parent.name);
+  }
+}
+
 class App extends EmberApp {
   modules = {
     "./router": Router,
+    "./routes/nested": DualRouterFix,
+    "./routes/outer-foo/nested": DualRouterFix,
+    "./routes/outer-bar/nested": DualRouterFix,
     "./templates/application": class extends Component {
       @service router;
 
